@@ -3,10 +3,12 @@
 # it by adding time stamps whenever you push your result into the CSV file.
 
 from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 import time
 import numpy as np
 import pandas as pd
-
 # Get the website using the Chrome web driver
 browser = webdriver.Chrome()
 
@@ -25,7 +27,7 @@ for website in websites:
     browser.get(website)
     try:
         # Attempt to find the price element by its ID
-        price = browser.find_element_by_id('data-test')
+        price = WebDriverWait(browser, 10).until(EC.visibility_of_element_located)((By.CSS_SELECTOR, '"data-test="product-price"'))
         # If found, extract the text and add to the DataFrame
         df = df.append({"Product": website, "Price": price.text}, ignore_index=True)
         print("Price for", website, ":", price.text)
