@@ -2,67 +2,39 @@
 # The aim of this project is to keep track of the price in case there is a price drop You can customise
 # it by adding time stamps whenever you push your result into the CSV file.
 
-import urllib.request,urllib.parse, urllib.error
-import ssl
-from bs4 import BeautifulSoup
-import requests
-import csv
+from selenium import webdriver
+import time
+import numpy as np
+import pandas as pd
 
+# Get the website using the Chrome web driver
+browser = webdriver.Chrome()
 
-# Ignore SSL certificate errors
-ctx = ssl.create_default_context()
-ctx.check_hostname = False
-ctx.verify_mode = ssl.CERT_NONE
+# Create an empty DataFrame to store the results
+df = pd.DataFrame(columns=["Product", "Price"])
 
-# Define the URL
-url = "https://www.nike.com/gb/"
+# Define a list of websites to scrape
+websites = [
+    'https://www.nike.com/gb/t/dunk-low-retro-shoe-Kd1wZr/DD1391-103',
+    'https://www.nike.com/gb/t/dunk-low-retro-shoe-QgD9Gv/DD1391-100',
+    'https://www.nike.com/gb/t/dunk-low-retro-shoes-p6gmkm/DV0833-400'
+]
 
-# Read the webpage
-response = urllib.request.urlopen(url).read()
-soup = BeautifulSoup(response, 'html.parser')
+# Loop through the websites
+for website in websites:
+    browser.get(website)
+    try:
+        # Attempt to find the price element by its ID
+        price = browser.find_element_by_id('data-test')
+        # If found, extract the text and add to the DataFrame
+        df = df.append({"Product": website, "Price": price.text}, ignore_index=True)
+        print("Price for", website, ":", price.text)
+    except:
+        # If the element is not found, print an error message
+        print("Price not found for", website)
 
-# Find links on the page
-link_elements = soup.select("a[href]")
+# Close the browser
+browser.quit()
 
-# Create a list to store URLs
-urls = []
-
-for link_element in link_elements:
-    url = link_element['href']
-    if "https://www.nike.com/gb/" in url:
-        urls.append(url)
-
-# Initialize the list of discovered URLs with the first page to visit
-urls_to_visit = ["https://www.nike.com/gb/"]
-
-# Create an empty list to store product information
-products = []
-
-# until all pages have been visited
-while len(urls_to_visit) != 0:
-    # get the page to visit from the list
-    current_url = urls_to_visit.pop(0)
-
-    # crawling logic
-    response = requests.get(current_url)
-    soup = BeautifulSoup(response.content, "html.parser")
-    link_elements = soup.select("a[href]")
-
-    product = {}
-    product["url"] = current_url
-
-    # You should replace these selectors with the actual ones for your target website
-    product["image"] = soup.select_one(".wp-post-image")["src"]
-    #product["title"] = soup.select_one(".product_title").text()
-
-    # You need to extract the price from the webpage and assign it to product["price"]
-
-    # Append the product information to the list
-    products.append(product)
-
-# Write the product information to a CSV file
-with open("products.csv", "w", newline='') as f:
-    writer = csv.writer(f)
-    writer.writerow(["url", "image", "title", "price"])
-    for product in products:
-        writer.writerow([product["url"], product["image"], product["title"], product.get("price", "N/A")])
+# Save data frame data into an Excel CSV file
+df.to_csv(r'PriceList.csv', index=False)
