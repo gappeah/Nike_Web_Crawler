@@ -26,8 +26,8 @@ websites = [
 for website in websites:
     browser.get(website)
     try:
-        # Attempt to find the price element by its ID
-        price = WebDriverWait(browser, 10).until(EC.visibility_of_element_located)((By.CSS_SELECTOR, '"data-test="product-price"'))
+        # Attempt to find the price element by its xPath
+        price = WebDriverWait(browser, 20).until(EC.presence_of_element_located((By.XPATH, '//*[@id="PDP"]/div[2]/div/div'))).text
         # If found, extract the text and add to the DataFrame
         df = df.append({"Product": website, "Price": price.text}, ignore_index=True)
         print("Price for", website, ":", price.text)
