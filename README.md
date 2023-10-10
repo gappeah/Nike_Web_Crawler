@@ -11,3 +11,6 @@ It was later discovered on Stack Overflow that the append method was removed fro
 
 The final issue was the " " character appearing in front of the price in the CSV file. This was likely due to encoding or character encoding mismatches when writing to the CSV file. To resolve this issue, the code was modified to explicitly specify the encoding when writing to the CSV file using the 'utf-8-sig' encoding, which is a variant of UTF-8 that includes a UTF-8 Byte Order Mark (BOM). This helped some applications recognize the UTF-8 encoding correctly and prevented the " " character from appearing in the CSV file.
 
+The code now is in a functioning and operating state.
+
+
