@@ -25,11 +25,11 @@ python Nike_Web_Crawler.py
 ### Script Functionality
 
 1. The script scrapes the prices of five Nike shoes:
-    - Dunk Low Retro Shoe (DD1391-103)
-    - Dunk Low Retro Shoe (DD1391-100)
-    - Dunk Low Retro Shoes (DV0833-400)
-    - Air Max 95 Shoes (FQ1235-002)
-    - Air Jordan 1 Retro High OG Shoes (DZ5485-051)
+    - Dunk Low Retro Shoe 
+    - Dunk Low Retro Shoe 
+    - Dunk Low Retro Shoes
+    - Air Max 95 Shoes
+    - Air Jordan 1 Retro High OG Shoes
 
 2. Extracts the shoe name and price from each shoe's product page.
 3. Stores the retrieved information in a DataFrame with columns "Product", "Name", "Price", and "Time".
