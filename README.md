@@ -1,10 +1,16 @@
-## Nike Web Scraper
+## Nike Web Crawler
 
 **A Python Script to Track Nike Shoe Prices**
 
 ### Overview
 
 This Python script utilizes Selenium and Pandas to scrape the prices of Nike shoes from the Nike website and store them in a CSV file. It provides real-time price tracking for a select list of Nike shoes.
+
+
+https://github.com/gappeah/Nike_Web_Crawler/assets/114095068/14d178bf-18e4-4031-9657-52e78d9d4fe9
+
+![image](https://github.com/gappeah/Nike_Web_Crawler/assets/114095068/525ee6b3-8467-4cf5-9f80-cdcf315f44f5)
+
 
 ### Requirements
 
@@ -30,6 +36,7 @@ python Nike_Web_Crawler.py
     - Dunk Low Retro Shoes
     - Air Max 95 Shoes
     - Air Jordan 1 Retro High OG Shoes
+This is can be easily replaced with a product from the Nike Website
 
 2. Extracts the shoe name and price from each shoe's product page.
 3. Stores the retrieved information in a DataFrame with columns "Product", "Name", "Price", and "Time".
