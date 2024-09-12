@@ -91,9 +91,12 @@ The `Nike_Web_Crawler_bs4.py` script uses the **BeautifulSoup** library to scrap
    sns.barplot(x='Name', y='Price_Clean', data=df)
    ```
 
+## Differences Data Visualisation in `Nike_Web_Crawler_sel.py` and `Nike_Web_Crawler_bs4.py`
+
+
 ## Detailed Explanation of `Nike_Web_Crawler_sel.py`
 
-The `Nike_Web_Crawler_sel.py` script utilizes **Selenium** to handle JavaScript-loaded pages and scroll to load all products on the search result pages.
+The `Nike_Web_Crawler_sel.py` script utilises **Selenium** to handle JavaScript-loaded pages and scroll to load all products on the search result pages.
 
 ### Key Features:
 1. **Setting Up Selenium WebDriver**:
