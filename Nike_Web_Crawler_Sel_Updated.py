@@ -12,7 +12,7 @@ import seaborn as sns
 def setup_driver():
     options = Options()
     options.add_argument("--headless")  # Run in headless mode (no GUI)
-    service = Service("path_to_chromedriver")  # Replace with your ChromeDriver path
+    service = Service("C:/chromedriver.exe")  # Replace with your ChromeDriver path
     driver = webdriver.Chrome(service=service, options=options)
     return driver
 
@@ -59,7 +59,7 @@ def scrape_all_products(driver, product_name):
 # Function to output the scraped data to a CSV
 def output(product_list):
     productsdf = pd.DataFrame(product_list)
-    csv_path = "F:\\data\\Nike_Web_Crawler-main\\Price.csv"
+    csv_path = "Price_Sel_Drive.csv"
     productsdf.to_csv(csv_path, index=False)
     print(f'Saved to CSV at {csv_path}')
     return productsdf
@@ -75,7 +75,7 @@ def main():
     productsdf = output(product_list)
 
     # Load the CSV data for visualization
-    df = pd.read_csv("F:\\data\\Nike_Web_Crawler-main\\Price.csv")
+    df = pd.read_csv("Price_Sel_Drive.csv")
     
     # Optional: Clean the price data
     df['Price_Clean'] = df['Price']

@@ -4,13 +4,7 @@
 
 ### Overview
 
-This Python script utilizes Selenium and Pandas to scrape the prices of Nike shoes from the Nike website and store them in a CSV file. It provides real-time price tracking for a select list of Nike shoes.
-
-
-https://github.com/gappeah/Nike_Web_Crawler/assets/114095068/14d178bf-18e4-4031-9657-52e78d9d4fe9
-
-![image](https://github.com/gappeah/Nike_Web_Crawler/assets/114095068/525ee6b3-8467-4cf5-9f80-cdcf315f44f5)
-
+This Python script utilizes Selenium and Pandas to scrape the prices of Nike shoes from the Nike website and store them in a CSV file and create visualisation using Seaborn.
 
 ### Requirements
 
