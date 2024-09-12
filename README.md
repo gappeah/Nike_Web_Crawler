@@ -92,6 +92,22 @@ The `Nike_Web_Crawler_bs4.py` script uses the **BeautifulSoup** library to scrap
    ```
 
 ## Differences Data Visualisation in `Nike_Web_Crawler_sel.py` and `Nike_Web_Crawler_bs4.py`
+Certainly! Here's the revised description using British English:
+
+---
+
+One notable aspect that requires improvement and highlights a significant difference between the two Python scripts is the amount of data available for visualisation. The BeautifulSoup-based script provides a richer dataset compared to the Selenium-driven version. This discrepancy arises because BeautifulSoup retrieves data from static HTML, which is typically more straightforward and complete. In contrast, Selenium interacts with dynamically rendered JavaScript content, which can pose challenges in data extraction.
+
+### Consequences of Using Selenium for Visualisations
+
+Using Selenium to scrape data can lead to less comprehensive datasets for visualisations. This is because JavaScript-driven pages often load content dynamically, meaning that certain data elements may not be immediately available in the HTML source code. As a result, Selenium may require additional steps to interact with the page, such as waiting for elements to load or executing JavaScript, which can complicate the data extraction process.
+
+Moreover, dynamically rendered content can sometimes lead to inconsistencies or missing data, impacting the quality and completeness of the visualisations. Therefore, while Selenium is powerful for handling complex, interactive web pages, it may require more sophisticated handling and additional processing to ensure that the data collected is suitable for creating accurate and insightful visual representations.
+
+Sources
+
+
+
 
 
 ## Detailed Explanation of `Nike_Web_Crawler_sel.py`
