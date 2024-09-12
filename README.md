@@ -8,6 +8,7 @@ This project involves web scraping Nike's product pages to extract product names
 4. [Detailed Explanation of `Nike_Web_Crawler_sel.py`](#detailed-explanation-of-nike_web_crawler_selpy)
 5. [How to Run the Project Locally](#how-to-run-the-project-locally)
 6. [Requirements](#requirements)
+7. [References](#references)
 
 ---
 
@@ -58,6 +59,27 @@ The project comprises three different versions of a Nike web crawler, each desig
   sns.barplot(x='Name', y='Price_Clean', data=df)
   ```
 
+## Differences Data Visualisation in `Nike_Web_Crawler_sel.py` and `Nike_Web_Crawler_bs4.py`
+One notable aspect that requires improvement and highlights a significant difference between the two Python scripts is the amount of data available for visualisation. The BeautifulSoup-based script provides a richer dataset compared to the Selenium-driven version. This discrepancy arises because BeautifulSoup retrieves data from static HTML, which is typically more straightforward and complete. In contrast, Selenium interacts with dynamically rendered JavaScript content, which can pose challenges in data extraction.
+#### Data Visualisation in `Nike_Web_Crawler_bs4.py`
+![Figure_3](https://github.com/user-attachments/assets/e77894cc-7bd3-4f31-a48a-70664f0deb43)
+![Figure_2](https://github.com/user-attachments/assets/1443e45e-2a9b-4887-ada6-8059ec279172)
+![Figure_1](https://github.com/user-attachments/assets/acc350f5-6a3c-4990-aa39-f408a4152161)
+
+#### Data Visualisation in `Nike_Web_Crawler_sel.py`
+![Figure_3_Sel](https://github.com/user-attachments/assets/e97c501b-9d2c-408a-a0e5-5c9126b961ae)
+![Figure_2_Sel](https://github.com/user-attachments/assets/59ff511c-6888-42ae-a148-75f38e2e36e4)
+![Figure_1_Sel](https://github.com/user-attachments/assets/d31946e6-f845-4fb7-8d35-9d355d7ba9d7)
+
+
+### Consequences of Using Selenium for Visualisations
+Using Selenium to scrape data can lead to less comprehensive datasets for visualisations. This is because JavaScript-driven pages often load content dynamically, meaning that certain data elements may not be immediately available in the HTML source code. As a result, Selenium may require additional steps to interact with the page, such as waiting for elements to load or executing JavaScript, which can complicate the data extraction process.
+
+Moreover, dynamically rendered content can sometimes lead to inconsistencies or missing data, impacting the quality and completeness of the visualisations. Therefore, while Selenium is powerful for handling complex, interactive web pages, it may require more sophisticated handling and additional processing to ensure that the data collected is suitable for creating accurate and insightful visual representations.
+
+
+
+
 ## Detailed Explanation of `Nike_Web_Crawler_bs4.py`
 
 The `Nike_Web_Crawler_bs4.py` script uses the **BeautifulSoup** library to scrape search result pages on Nike's website.
@@ -90,25 +112,6 @@ The `Nike_Web_Crawler_bs4.py` script uses the **BeautifulSoup** library to scrap
    ```python
    sns.barplot(x='Name', y='Price_Clean', data=df)
    ```
-
-## Differences Data Visualisation in `Nike_Web_Crawler_sel.py` and `Nike_Web_Crawler_bs4.py`
-Certainly! Here's the revised description using British English:
-
----
-
-One notable aspect that requires improvement and highlights a significant difference between the two Python scripts is the amount of data available for visualisation. The BeautifulSoup-based script provides a richer dataset compared to the Selenium-driven version. This discrepancy arises because BeautifulSoup retrieves data from static HTML, which is typically more straightforward and complete. In contrast, Selenium interacts with dynamically rendered JavaScript content, which can pose challenges in data extraction.
-
-### Consequences of Using Selenium for Visualisations
-
-Using Selenium to scrape data can lead to less comprehensive datasets for visualisations. This is because JavaScript-driven pages often load content dynamically, meaning that certain data elements may not be immediately available in the HTML source code. As a result, Selenium may require additional steps to interact with the page, such as waiting for elements to load or executing JavaScript, which can complicate the data extraction process.
-
-Moreover, dynamically rendered content can sometimes lead to inconsistencies or missing data, impacting the quality and completeness of the visualisations. Therefore, while Selenium is powerful for handling complex, interactive web pages, it may require more sophisticated handling and additional processing to ensure that the data collected is suitable for creating accurate and insightful visual representations.
-
-Sources
-
-
-
-
 
 ## Detailed Explanation of `Nike_Web_Crawler_sel.py`
 
@@ -163,11 +166,38 @@ source venv/bin/activate  # On Windows, use venv\Scripts\activate
 
 ### Step 3: Download ChromeDriver
 - Download **ChromeDriver** from [here](https://sites.google.com/a/chromium.org/chromedriver/downloads) and place it in a suitable folder.
-- Update the path in the `Nike_Web_Crawler_sel.py`:
-  ```python
-  service = Service("C:/path_to_your_chromedriver/chromedriver.exe")
-  ```
+-  if you encountered the issue, `NoSuchDriverException`, indicates that Selenium could not locate or use the ChromeDriver, which is required to control Chrome for web scraping. Here are a few steps to resolve the issue:
+  1. **Ensure ChromeDriver is installed and accessible:**
+     - Download the appropriate version of ChromeDriver for your version of Google Chrome from the [ChromeDriver official website](https://sites.google.com/chromium.org/driver/).
+     - Make sure the version of ChromeDriver matches your Chrome browser version. You can check your Chrome version by navigating to `chrome://settings/help` in Chrome.
+  2. **Set the correct path to ChromeDriver:**
+     - In your script, replace `"path_to_chromedriver"` in this line:
+     ```python
+     service = Service("path_to_chromedriver")  # Replace with your ChromeDriver path
+     ```
+     with the actual path to your `chromedriver.exe` file. For example:
+     ```python
+     service = Service("C:/path/to/chromedriver.exe")
+     ```
+     In this case in my version it will be
+     ```python
+     service = Service("C:/chromedriver.exe")
+     ```
+3. **Add ChromeDriver to your system PATH:**
+   - Ensure that the directory containing `chromedriver.exe` is added to your system PATH so that it can be found globally. You can follow these steps:
+     - Right-click on `This PC` or `My Computer`, select `Properties`, then go to `Advanced system settings`.
+     - Click on `Environment Variables`, find the `Path` variable under `System variables`, and click `Edit`.
+     - Add the directory where `chromedriver.exe` is located.
 
+4. **Check if the ChromeDriver version matches Chrome:**
+   - Chrome updates frequently, and your ChromeDriver must match the installed version of Chrome. If you recently updated Chrome, make sure you update ChromeDriver to the compatible version.
+
+5. **Verify that headless mode is working:**
+   - If you're using headless mode (`options.add_argument("--headless")`), try running it in normal mode by commenting out the headless argument. This will allow you to see if the browser is being correctly opened and controlled:
+     ```python
+     # options.add_argument("--headless")
+     ```
+  
 ### Step 4: Run the Desired Script
 You can run any of the scripts by using:
 ```bash
@@ -190,3 +220,41 @@ Follow the prompts for the product name and the number of pages to scrape.
 ```bash
 pip install selenium beautifulsoup4 pandas matplotlib seaborn
 ```
+
+Here’s a reference section you can add to your `README.md` file:
+
+---
+
+## References
+
+1. **Selenium Documentation**:  
+   Official documentation for Selenium WebDriver, covering usage, troubleshooting, and best practices.  
+   [Selenium Documentation](https://www.selenium.dev/documentation/webdriver/)
+
+2. **ChromeDriver Downloads**:  
+   Link to download the latest compatible version of ChromeDriver for your Chrome browser version.  
+   [ChromeDriver Downloads](https://sites.google.com/chromium.org/driver/)
+
+3. **BeautifulSoup Documentation**:  
+   Detailed guide on using BeautifulSoup for parsing HTML and XML documents in Python.  
+   [BeautifulSoup Documentation](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)
+
+4. **Pandas Documentation**:  
+   Guide to using pandas for data manipulation and analysis, including CSV file handling.  
+   [Pandas Documentation](https://pandas.pydata.org/docs/)
+
+5. **Matplotlib Documentation**:  
+   Comprehensive documentation on using Matplotlib for creating static, animated, and interactive visualizations in Python.  
+   [Matplotlib Documentation](https://matplotlib.org/stable/contents.html)
+
+6. **Seaborn Documentation**:  
+   Official documentation for Seaborn, a Python data visualization library built on top of Matplotlib.  
+   [Seaborn Documentation](https://seaborn.pydata.org/)
+
+7. **Headless Chrome**:  
+   Information on running Chrome in headless mode, which allows it to run in the background without a GUI.  
+   [Headless Chrome](https://developers.google.com/web/updates/2017/04/headless-chrome)
+
+8. **Web Scraping Best Practices**:  
+   Best practices and ethical considerations when scraping websites, including avoiding overloading servers and respecting terms of service.  
+   [Web Scraping Best Practices](https://www.scrapingbee.com/blog/web-scraping-best-practices/)
