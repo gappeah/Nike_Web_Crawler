@@ -16,7 +16,7 @@ This project involves web scraping Nike's product pages to extract product names
 
 The project comprises three different versions of a Nike web crawler, each designed to scrape product details from Nike's website:
 
-- **`Nike_Web_Crawler_Original.py`**: The first version uses **Selenium** to scrape specific Nike product pages.
+- **`Nike_Web_Crawler_Original.py`**: The first version uses **Selenium** to scrape specific Nike product pages, developed from between September 2023 to November 2023
 - **`Nike_Web_Crawler_bs4.py`**: This version is rewritten using **BeautifulSoup** for more efficient page scraping and parsing.
 - **`Nike_Web_Crawler_sel.py`**: A revamped **Selenium-based** scraper that crawls search result pages on Nike, scrolling dynamically and fetching multiple products.
 
