@@ -104,7 +104,7 @@ The `Nike_Web_Crawler_bs4.py` script uses the **BeautifulSoup** library to scrap
 3. **Saving Data**:
    The scraped data is saved into a CSV file using pandas:
    ```python
-   productsdf.to_csv("Price.csv", index=False)
+   productsdf.to_csv("Price_BS4.csv", index=False)
    ```
 
 4. **Data Visualisation**:

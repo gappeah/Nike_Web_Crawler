@@ -47,7 +47,7 @@ def scrape_all_products(driver, product_name):
         parse(driver, product_list)
         
         driver.find_element(By.TAG_NAME, 'body').send_keys(Keys.END)
-        time.sleep(2)  # Wait for more products to load
+        time.sleep(10)  # Wait for more products to load
         
         new_height = driver.execute_script("return document.body.scrollHeight")
         if new_height == last_height:
@@ -59,7 +59,7 @@ def scrape_all_products(driver, product_name):
 # Function to output the scraped data to a CSV
 def output(product_list):
     productsdf = pd.DataFrame(product_list)
-    csv_path = "Price_Sel_Drive.csv"
+    csv_path = "Price_Sel.csv"
     productsdf.to_csv(csv_path, index=False)
     print(f'Saved to CSV at {csv_path}')
     return productsdf
@@ -75,7 +75,7 @@ def main():
     productsdf = output(product_list)
 
     # Load the CSV data for visualization
-    df = pd.read_csv("Price_Sel_Drive.csv")
+    df = pd.read_csv("Price_Sel.csv")
     
     # Optional: Clean the price data
     df['Price_Clean'] = df['Price']
@@ -94,12 +94,15 @@ def main():
     plt.show()
 
     # Box plot of prices by product name
-    plt.figure(figsize=(12, 6))
+    plt.figure(figsize=(50, 6))
     sns.boxplot(x='Name', y='Price_Clean', data=df)
     plt.title('Price Distribution by Product')
     plt.xlabel('Product Name')
     plt.ylabel('Price (£)')
-    plt.xticks(rotation=90)
+    plt.xticks(rotation=90)  # Adjust fontsize here
+    # Adjust layout to give more space to the x-axis labels
+    plt.tight_layout()
+
     plt.show()
 
     # Histogram of price distribution

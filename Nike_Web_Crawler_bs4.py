@@ -44,7 +44,7 @@ def parse(soup):
 # Function to output the scraped data to a CSV
 def output(productlist):
     productsdf = pd.DataFrame(productlist)
-    csv_path = "Price.csv"
+    csv_path = "Price_BS4.csv"
     productsdf.to_csv(csv_path, index=False)  # Adjust the path
     print(f'Saved to CSV at {csv_path}')
     return productsdf
@@ -71,7 +71,7 @@ def main():
     productsdf = search_nike()
 
     # Load the CSV data for visualization
-    df = pd.read_csv("Price.csv")
+    df = pd.read_csv("Price_BS4.csv")
     
     # Optional: Clean the price data
     df['Price_Clean'] = df['Price']
@@ -91,12 +91,15 @@ def main():
 
     # Box plot of prices by product name (or category if available)
     # You can replace 'Name' with a 'Category' field if your dataset has that.
-    plt.figure(figsize=(12, 6))
+    plt.figure(figsize=(50, 6))
     sns.boxplot(x='Name', y='Price_Clean', data=df)
     plt.title('Price Distribution by Product')
     plt.xlabel('Product Name')
     plt.ylabel('Price (£)')
-    plt.xticks(rotation=90)
+    plt.xticks(rotation=90)  # Adjust fontsize here
+    # Adjust layout to give more space to the x-axis labels
+    plt.tight_layout()
+
     plt.show()
 
     # Histogram of price distribution
