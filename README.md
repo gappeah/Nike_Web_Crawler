@@ -61,23 +61,21 @@ The project comprises three different versions of a Nike web crawler, each desig
 
 ## Differences Data Visualisation in `Nike_Web_Crawler_sel.py` and `Nike_Web_Crawler_bs4.py`
 One notable aspect that requires improvement and highlights a significant difference between the two Python scripts is the amount of data available for visualisation. The BeautifulSoup-based script provides a richer dataset compared to the Selenium-driven version. This discrepancy arises because BeautifulSoup retrieves data from static HTML, which is typically more straightforward and complete. In contrast, Selenium interacts with dynamically rendered JavaScript content, which can pose challenges in data extraction.
+
 #### Data Visualisation in `Nike_Web_Crawler_bs4.py`
-![Figure_3](https://github.com/user-attachments/assets/e77894cc-7bd3-4f31-a48a-70664f0deb43)
-![Figure_2](https://github.com/user-attachments/assets/1443e45e-2a9b-4887-ada6-8059ec279172)
-![Figure_1](https://github.com/user-attachments/assets/acc350f5-6a3c-4990-aa39-f408a4152161)
+![Figure_3](https://github.com/user-attachments/assets/c1cd7101-8109-4b2f-9187-a0eac5e559d6)
+![Figure_2](https://github.com/user-attachments/assets/0d9c363d-ef47-45b2-bdca-bf73ba3642a6)
+![Figure_1](https://github.com/user-attachments/assets/0a8decc8-1634-4b1d-b669-b90c0097f4a2)
 
 #### Data Visualisation in `Nike_Web_Crawler_sel.py`
-![Figure_3_Sel](https://github.com/user-attachments/assets/e97c501b-9d2c-408a-a0e5-5c9126b961ae)
-![Figure_2_Sel](https://github.com/user-attachments/assets/59ff511c-6888-42ae-a148-75f38e2e36e4)
-![Figure_1_Sel](https://github.com/user-attachments/assets/d31946e6-f845-4fb7-8d35-9d355d7ba9d7)
-
+![Figure_3_S](https://github.com/user-attachments/assets/5323dc40-e222-4b8f-a676-45ddec4f89eb)
+![Figure_2_S](https://github.com/user-attachments/assets/8f179710-b05b-4572-b4f5-802840639937)
+![Figure_1_S](https://github.com/user-attachments/assets/66b84071-1089-42fb-95ad-f1fcfd398807)
 
 ### Consequences of Using Selenium for Visualisations
 Using Selenium to scrape data can lead to less comprehensive datasets for visualisations. This is because JavaScript-driven pages often load content dynamically, meaning that certain data elements may not be immediately available in the HTML source code. As a result, Selenium may require additional steps to interact with the page, such as waiting for elements to load or executing JavaScript, which can complicate the data extraction process.
 
 Moreover, dynamically rendered content can sometimes lead to inconsistencies or missing data, impacting the quality and completeness of the visualisations. Therefore, while Selenium is powerful for handling complex, interactive web pages, it may require more sophisticated handling and additional processing to ensure that the data collected is suitable for creating accurate and insightful visual representations.
-
-
 
 
 ## Detailed Explanation of `Nike_Web_Crawler_bs4.py`
